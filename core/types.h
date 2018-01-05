@@ -87,7 +87,7 @@ namespace jp
 	}
     };  
     
-    typedef cv::Mat_<size_t> img_leaf_t; // image of leaf indices per pixel
+    typedef cv::Mat_<int> img_leaf_t; // image of leaf indices per pixel
     typedef cv::Mat_<float> img_stat_t; // image containing some statistic per pixel, e.g. an object probability
     
 
