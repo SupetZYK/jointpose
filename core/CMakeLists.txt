@@ -11,7 +11,8 @@ include(${CMAKE_SOURCE_DIR}/cmake/FindNLopt.cmake)
 
 include_directories(../edison_source/)
 include_directories(${PNG_INCLUDE_DIR})
-set(OpenCV_DIR "/opt/ros/kinetic/share/OpenCV-3.3.1")
+#set(OpenCV_DIR "/opt/ros/kinetic/share/OpenCV-3.3.1")
+set(OpenCV_DIR "/opt/ros/kinetic/share/OpenCV-3.2.0-dev")
 find_package(OpenCV REQUIRED)
 if(NOT OpenCV_FOUND)
         # make FIND_PACKAGE friendly
