@@ -34,6 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "generic_io.h"
 
 #include "feature_dabgr.h"
+#include "feature_dagray.h"
 #include "feature_abscell.h"
 #include "feature_abscoord.h"
 
