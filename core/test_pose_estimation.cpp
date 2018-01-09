@@ -56,7 +56,7 @@ int main(int argc, const char* argv[])
     gp->parseCmdLine(argc, argv); // parse parameters given via command line
    
     std::string dataDir = "./";
-    std::string setDir = dataDir + "test/"; // test data directory
+    std::string setDir = dataDir + "test2/"; // test data directory
     std::string trainingDir = dataDir + "training/"; // training data directory (used to find the closes training image to a test image for evaluation)
 
     // get data sub folders

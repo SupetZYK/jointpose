@@ -25,7 +25,7 @@ namespace jp
          * @param off2_y Y component of the offset vector of pixel probe 2.
          * @param training Does the feature operate in training mode? (Simulation of noisy responses)
          */
-        FeatureDABGR(int off1_x, int off1_y, int off2_x, int off2_y, bool training) :
+        FeatureDAGRAY(int off1_x, int off1_y, int off2_x, int off2_y, bool training) :
             off1_x(off1_x), off1_y(off1_y),
             off2_x(off2_x), off2_y(off2_y),
             training(training)

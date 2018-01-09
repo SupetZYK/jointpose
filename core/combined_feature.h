@@ -280,8 +280,8 @@ namespace jp
     {
 	feature.restore(file);
     }
-    
+    typedef FeatureSamplerDAGRAY imageFeatureSampler;  //zyk, two selections, can be RGB or GRAY
     typedef FeatureSamplerCombined<FeatureSamplerAbsCoord, FeatureSamplerAbsCell> sampler_inner_t1; // inner node of recursive feature type tree
-    typedef FeatureSamplerCombined<FeatureSamplerDABGR, sampler_inner_t1> sampler_outer_t; // inner node of recursive feature type tree
+    typedef FeatureSamplerCombined<imageFeatureSampler, sampler_inner_t1> sampler_outer_t; // inner node of recursive feature type tree
     typedef sampler_outer_t::feature_t feature_t; // feature type definition used throughout this code
 }

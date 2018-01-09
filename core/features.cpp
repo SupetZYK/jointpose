@@ -59,4 +59,14 @@ namespace jp
     {
 	feature.restore(file);
     }       
+    template<>
+    void write(std::ofstream& file, const FeatureDAGRAY& feature)
+    {
+    feature.store(file);
+    }
+    template<>
+    void read(std::ifstream& file, FeatureDAGRAY& feature)
+    {
+    feature.restore(file);
+    }
 }
