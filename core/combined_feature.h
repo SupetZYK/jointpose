@@ -280,7 +280,6 @@ namespace jp
     {
 	feature.restore(file);
     }
-
     typedef FeatureSamplerDABGR imageFeatureSampler;
     typedef FeatureSamplerCombined<FeatureSamplerAbsCoord, FeatureSamplerAbsCell> sampler_inner_t1; // inner node of recursive feature type tree
     typedef FeatureSamplerCombined<imageFeatureSampler, sampler_inner_t1> sampler_outer_t; // inner node of recursive feature type tree

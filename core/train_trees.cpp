@@ -43,9 +43,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 /**
  * @brief Create a feature sampler.
- * 
+ *
  * Creates a feature sampler class which samples random features of different types with given probabilities.
- * 
+ *
  * @param weightDABGR Weight of sampling a RGB pixel difference feature.
  * @param weightAbsCoord Weight of sampling an auto-context object coordinate feature.
  * @param weightAbsCell Weight of sampling an auto-context object class feature.
@@ -56,24 +56,56 @@ jp::sampler_outer_t createSampler(
     float weightAbsCoord,
     float weightAbsCell)
 {
-    GlobalProperties* gp = GlobalProperties::getInstance();  
+    GlobalProperties* gp = GlobalProperties::getInstance();
   
     // create samplers for each feature type
     jp::imageFeatureSampler samplerDABGR(gp->fP.maxOffset);
     jp::FeatureSamplerAbsCoord samplerAbsCoord(gp->fP.maxOffset, gp->fP.objectCount);
-    jp::FeatureSamplerAbsCell samplerAbsCell(gp->fP.maxOffset, gp->fP.objectCount);  
+    jp::FeatureSamplerAbsCell samplerAbsCell(gp->fP.maxOffset, gp->fP.objectCount);
   
-    // samplers are combined in a binary tree structure. Calculate weights of the inner 
+    // samplers are combined in a binary tree structure. Calculate weights of the inner
     // nodes such that the distribution of feature types corresponds to the given weights.
-    float weightInner1 = ((weightAbsCoord + weightAbsCell) == 0) 
-	? 0 : weightAbsCoord / (weightAbsCoord + weightAbsCell);
-    float weightOuter = ((weightDABGR + weightAbsCoord + weightAbsCell) == 0) 
-	? 0 : (weightDABGR) / (weightDABGR + weightAbsCoord + weightAbsCell);	
+    float weightInner1 = ((weightAbsCoord + weightAbsCell) == 0)
+    ? 0 : weightAbsCoord / (weightAbsCoord + weightAbsCell);
+    float weightOuter = ((weightDABGR + weightAbsCoord + weightAbsCell) == 0)
+    ? 0 : (weightDABGR) / (weightDABGR + weightAbsCoord + weightAbsCell);
     
     // build sampler tree
     jp::sampler_inner_t1 innerSampler1(samplerAbsCoord, samplerAbsCell, weightInner1);
-    return jp::sampler_outer_t(samplerDABGR, innerSampler1, weightOuter);  
+    return jp::sampler_outer_t(samplerDABGR, innerSampler1, weightOuter);
 }
+
+///**
+// * @brief Create a feature sampler.
+// *
+// * Creates a feature sampler class which samples random features of different types with given probabilities.
+// *
+// * @param weightAbsCoord Weight of sampling an auto-context object coordinate feature.
+// * @param weightAbsCell Weight of sampling an auto-context object class feature.
+// * @return jp::sampler_outer_t Feature sampler.
+// */
+//jp::sampler_final_t createSampler(
+//    float weightDABGR,
+//    float weightAbsCoord,
+//    float weightAbsCell)
+//{
+//    GlobalProperties* gp = GlobalProperties::getInstance();
+
+//    // create samplers for each feature type
+//    //jp::imageFeatureSampler samplerDABGR(gp->fP.maxOffset);
+//    jp::FeatureSamplerAbsCoord samplerAbsCoord(gp->fP.maxOffset, gp->fP.objectCount);
+//    jp::FeatureSamplerAbsCell samplerAbsCell(gp->fP.maxOffset, gp->fP.objectCount);
+
+//    // samplers are combined in a binary tree structure. Calculate weights of the inner
+//    // nodes such that the distribution of feature types corresponds to the given weights.
+//    float weightInner1 = ((weightAbsCoord + weightAbsCell) == 0)
+//    ? 0 : weightAbsCoord / (weightAbsCoord + weightAbsCell);
+////    float weightOuter = ((weightDABGR + weightAbsCoord + weightAbsCell) == 0)
+////	? 0 : (weightDABGR) / (weightDABGR + weightAbsCoord + weightAbsCell);
+
+//    // build sampler tree
+//    return jp::sampler_final_t (samplerAbsCoord, samplerAbsCell, weightInner1);
+//}
 
 int main(int argc, const char* argv[])
 {
