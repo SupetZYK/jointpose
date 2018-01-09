@@ -59,7 +59,7 @@ jp::sampler_outer_t createSampler(
     GlobalProperties* gp = GlobalProperties::getInstance();  
   
     // create samplers for each feature type
-    jp::FeatureSamplerDABGR samplerDABGR(gp->fP.maxOffset);
+    jp::imageFeatureSampler samplerDABGR(gp->fP.maxOffset);
     jp::FeatureSamplerAbsCoord samplerAbsCoord(gp->fP.maxOffset, gp->fP.objectCount);
     jp::FeatureSamplerAbsCell samplerAbsCell(gp->fP.maxOffset, gp->fP.objectCount);  
   
